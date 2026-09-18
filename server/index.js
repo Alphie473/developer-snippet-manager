@@ -1,5 +1,6 @@
+require('dotenv').config({ path: require('path').resolve(__dirname, '../.env') });
 const express = require('express');
-const mysql = require('mysql2/promise');
+const { Pool } = require('pg');
 const cors = require('cors');
 
 const app = express();
@@ -7,13 +8,11 @@ app.use(cors());
 app.use(express.json());
 
 // Database connection pool
-const pool = mysql.createPool({
-  host: 'localhost',
-  user: 'root',
-  password: '1162007',
-  database: 'devvault',
-  waitForConnections: true,
-  connectionLimit: 10,
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false,
+  },
 });
 
 // GET /api/snippets (Read All)
@@ -37,10 +36,10 @@ app.post('/api/snippets', async (req, res) => {
 
   try {
     const [result] = await pool.query(
-      'INSERT INTO snippets (title, language, tags, code) VALUES (?, ?, ?, ?)',
-      [title, language, tagString, code]
+      'INSERT INTO snippets (title, language, tags, code) VALUES ($1, $2, $3, $4) RETURNING id',
+[title, language, tagString, code]
     );
-    res.status(201).json({ id: result.insertId, title, language, tags, code });
+    res.status(201).json({ id: result.rows[0].id, title, language, tags, code });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -49,7 +48,12 @@ app.post('/api/snippets', async (req, res) => {
 // DELETE /api/snippets/:id (Delete)
 app.delete('/api/snippets/:id', async (req, res) => {
   try {
-    await pool.query('DELETE FROM snippets WHERE id = ?', [req.params.id]);
+    const result = await pool.query('SELECT * FROM snippets ORDER BY id DESC');
+    const snippet = result.rows.find((row) => row.id === parseInt(req.params.id));
+    if (!snippet) {
+      return res.status(404).json({ error: 'Snippet not found' });
+    }
+    await pool.query('DELETE FROM snippets WHERE id = $1', [req.params.id]);
     res.sendStatus(204);
   } catch (err) {
     res.status(500).json({ error: err.message });
