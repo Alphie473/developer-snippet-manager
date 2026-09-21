@@ -4,7 +4,7 @@ import Sidebar from './components/Sidebar';
 import SnippetCard from './components/SnippetCard';
 import SnippetForm, { type NewSnippetData } from './components/SnippetForm';
 
-const API_BASE = 'http://localhost:5000/api/snippets';
+const API_BASE = 'https://developer-snippet-manager.onrender.com/api/snippets';
 
 interface Snippet {
   id: number;
