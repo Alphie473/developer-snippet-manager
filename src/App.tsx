@@ -16,6 +16,7 @@ interface Snippet {
 
 export default function App() {
   const [currentTab, setCurrentTab] = useState('snippets');
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [snippets, setSnippets] = useState<Snippet[]>([]);
   const [favorites, setFavorites] = useState<number[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -86,9 +87,14 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-gray-50 text-gray-900">
-      <Header />
+      <Header onMenuClick={() => setIsMenuOpen(true)} />
       <div className="flex">
-        <Sidebar currentTab={currentTab} onSelectTab={setCurrentTab} />
+        <Sidebar
+          currentTab={currentTab}
+          onSelectTab={setCurrentTab}
+          isOpen={isMenuOpen}
+          onClose={() => setIsMenuOpen(false)}
+        />
 
         <main className="flex-1 p-6 space-y-6">
           {/* DASHBOARD TAB */}
