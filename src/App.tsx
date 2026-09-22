@@ -86,7 +86,7 @@ export default function App() {
   }, {} as Record<string, number>);
 
   return (
-    <div className="min-h-screen bg-gray-50 text-gray-900">
+    <div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg p-4">
       <Header onMenuClick={() => setIsMenuOpen(true)} />
       <div className="flex">
         <Sidebar
