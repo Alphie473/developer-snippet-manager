@@ -11,11 +11,12 @@ export default function ThemeToggle() {
   });
 
   useEffect(() => {
+    const root = document.documentElement;
     if (darkMode) {
-      document.documentElement.classList.add('dark');
+      root.classList.add('dark');
       localStorage.setItem('theme', 'dark');
     } else {
-      document.documentElement.classList.remove('dark');
+      root.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
   }, [darkMode]);
@@ -27,7 +28,7 @@ export default function ThemeToggle() {
       aria-label="Toggle Theme"
     >
       {darkMode ? <Sun size={18} /> : <Moon size={18} />}
-      <span className="text-xs font-medium">{darkMode ? 'Light' : 'Dark'}</span>
+      <span className="text-xs font-medium">{darkMode ? 'Light Mode' : 'Dark Mode'}</span>
     </button>
   );
 }

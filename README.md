@@ -1,75 +1,38 @@
-# React + TypeScript + Vite
+# DevVault 🚀
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Your personal developer knowledge library, code snippet manager, and resource tracker.
 
-Currently, two official plugins are available:
+![DevVault Demo](https://via.placeholder.com/800x450.png?text=DevVault+App+Screenshot) <!-- Replace with a real screenshot or GIF later! -->
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## ✨ Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Code Snippet Management:** Save, organize, and retrieve reusable code snippets instantly.
+- **Syntax Highlighting:** Powered by Prism.js to give your code blocks clean, professional formatting across multiple languages (JavaScript, SQL, Python, CSS, etc.).
+- **Dark/Light Mode:** Fully responsive theme switcher that respects developer preferences and saves state locally.
+- **Tag-Based Filtering & Search:** Quickly find what you need by searching titles or filtering by language tags.
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠️ Tech Stack
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **Frontend:** React, Vite, TypeScript, Tailwind CSS, Lucide Icons, Prism.js
+- **Backend:** Node.js, Express.js
+- **Database:** MySQL Workbench / relational database storage
+- **Deployment:** Vercel (Frontend)
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## ⚙️ Getting Started Locally
 
-```
+Follow these steps to run DevVault on your local machine:
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+### Prerequisites
+- Node.js installed on your machine
+- MySQL Server running locally
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-
-```
+### 1. Clone the Repository
+```bash
+git clone [https://github.com/alphie473/developer-snippet-manager.git](https://github.com/alphie473/developer-snippet-manager.git)
+cd developer-snippet-manager
